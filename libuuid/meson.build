@@ -20,7 +20,7 @@ unparse_c = files('src/unparse.c')
 libuuid_sym = 'src/libuuid.sym'
 libuuid_sym_path = '@0@/@1@'.format(meson.current_source_dir(), libuuid_sym)
 
-lib_uuid = both_libraries(
+lib_uuid = static_library(
   'uuid',
   list_h,
   lib_uuid_sources,

@@ -31,7 +31,7 @@ lib_smartcols_sources = '''
 libsmartcols_sym = 'src/libsmartcols.sym'
 libsmartcols_sym_path = '@0@/@1@'.format(meson.current_source_dir(), libsmartcols_sym)
 
-lib_smartcols = both_libraries(
+lib_smartcols = static_library(
   'smartcols',
   list_h,
   lib_smartcols_sources,

@@ -46,7 +46,7 @@ lib_blkid_sources = '''
   src/partitions/sun.c
   src/partitions/ultrix.c
   src/partitions/unixware.c
-  
+
   src/superblocks/adaptec_raid.c
   src/superblocks/apfs.c
   src/superblocks/bcache.c
@@ -131,20 +131,19 @@ if build_libblkid and not have_dirfd and not have_ddfd
   error('neither dirfd nor ddfd are available')
 endif
 
-lib_blkid = both_libraries(
+lib_blkid = static_library(
   'blkid',
   list_h,
   lib_blkid_sources,
   include_directories : [dir_include, dir_libblkid],
   link_depends : libblkid_sym,
-  version : libblkid_version,
   link_args : ['-Wl,--version-script=@0@'.format(libblkid_sym_path)],
   link_with : lib_common,
   dependencies : build_libblkid ? [] : disabler(),
   install : build_libblkid)
 blkid_dep = declare_dependency(link_with: lib_blkid, include_directories: '.')
 
-lib_blkid_static = lib_blkid.get_static_lib()
+lib_blkid_static = lib_blkid
 
 if build_libblkid
   pkgconfig.generate(lib_blkid,

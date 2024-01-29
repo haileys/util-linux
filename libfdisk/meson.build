@@ -60,8 +60,8 @@ lib_fdisk_static = static_library(
   'fdisk_static',
   link_whole : lib__fdisk,
   link_with : [lib_common,
-               lib_blkid.get_static_lib(),
-               lib_uuid.get_static_lib()],
+               lib_blkid,
+               lib_uuid],
   install : false)
 
 lib_fdisk = library(
